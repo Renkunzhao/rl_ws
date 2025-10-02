@@ -1,0 +1,30 @@
+version: '3.9'
+
+services:
+  rl_ws:
+    env_file: .env
+    build:
+      context: ../
+      dockerfile: docker/Dockerfile
+      args:
+        - ISAACLAB_ROS2_IMAGE_ARG=${ISAACLAB_ROS2_IMAGE}
+        - DOCKER_RL_WS_PATH_ARG=${DOCKER_RL_WS_PATH}
+    image: rl_ws
+    container_name: rl_ws
+    volumes:
+      - type: bind
+        source: ../
+        target: ${DOCKER_RL_WS_PATH}
+    network_mode: host
+    environment:
+      - OMNI_KIT_ALLOW_ROOT=1
+    deploy: 
+      resources:
+        reservations:
+          devices:
+            - capabilities: [gpu]
+
+    # This is the entrypoint for the container
+    entrypoint: bash
+    stdin_open: true
+    tty: true
