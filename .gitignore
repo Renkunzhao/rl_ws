@@ -1,2 +1,5 @@
+build
 logs
 outputs
+.cache
+.vscode

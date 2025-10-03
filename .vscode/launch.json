@@ -1,0 +1,21 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Train Unitree Go2 (IsaacLab Python)",
+            "type": "debugpy",
+            "request": "launch",
+            "python": "/workspace/isaaclab/_isaac_sim/python.sh",
+            "program": "${workspaceFolder}/src/unitree_rl_lab/scripts/rsl_rl/train.py",
+            "console": "integratedTerminal",
+            "cwd": "${workspaceFolder}",
+            "args": [
+                "--headless",
+                "--task", "Unitree-Go2-Velocity",
+                "--resume",
+                "--load_run", "2025-10-03_02-33-14",
+                "--checkpoint", "model_1700.pt"
+            ]
+        }
+    ]
+}

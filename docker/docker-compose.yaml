@@ -12,19 +12,27 @@ services:
     image: rl_ws
     container_name: rl_ws
     volumes:
-      - type: bind
-        source: ../
-        target: ${DOCKER_RL_WS_PATH}
+      - /tmp/.X11-unix:/tmp/.X11-unix
+      - /etc/localtime:/etc/localtime
+      - /dev/input:/dev/input
+      - /run/udev:/run/udev
+      - ../:${DOCKER_RL_WS_PATH}
     network_mode: host
     environment:
       - OMNI_KIT_ALLOW_ROOT=1
+      - NVIDIA_DRIVER_CAPABILITIES=all
+      - DISPLAY=${DISPLAY}
+      - QT_X11_NO_MITSHM=1
+      - XAUTHORITY=/tmp/.docker.xauth
     deploy: 
       resources:
         reservations:
           devices:
             - capabilities: [gpu]
-
     # This is the entrypoint for the container
     entrypoint: bash
     stdin_open: true
     tty: true
+    privileged: true
+    # security_opt:
+    #   - seccomp=unconfined

@@ -1,0 +1,25 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Run Simulation",
+            "type": "shell",
+            "command": "./unitree_mujoco",
+            "options": {
+                "cwd": "${workspaceFolder}/src/unitree_mujoco/simulate/build"
+            },
+            "group": "simulation",
+            "problemMatcher": []
+        },
+        {
+            "label": "Run Control",
+            "type": "shell",
+            "command": "./g1_ctrl -n lo",
+            "options": {
+                "cwd": "${workspaceFolder}/src/unitree_rl_lab/deploy/robots/g1_29dof/build"
+            },
+            "group": "control",
+            "problemMatcher": []
+        }
+    ]
+}
