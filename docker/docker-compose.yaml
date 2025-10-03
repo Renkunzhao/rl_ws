@@ -17,6 +17,9 @@ services:
       - /dev/input:/dev/input
       - /run/udev:/run/udev
       - ../:${DOCKER_RL_WS_PATH}
+      - ../.cache/pip:/root/.cache/pip
+      - ../.cache/uv:/root/.cache/uv
+      - ${HOME}/.gitconfig:/root/.gitconfig
     network_mode: host
     environment:
       - OMNI_KIT_ALLOW_ROOT=1

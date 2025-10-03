@@ -1,5 +1,16 @@
+# vscode
+.vscode
+
+# clangd & pip
+.cache
+
+# colcon
 build
+log
+install
+
+# isaaclab
 logs
 outputs
-.cache
-.vscode
+
+lib
