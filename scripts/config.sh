@@ -44,6 +44,7 @@ git clone https://github.com/google-deepmind/mujoco_playground.git
 
 cd $PROJECT_DIR/src/mujoco_playground
 wget -qO- https://astral.sh/uv/install.sh | sh
+echo 'eval "$(uv generate-shell-completion bash)"' >> ~/.bashrc
 source $HOME/.local/bin/env
 rm -rf .venv
 uv venv --python 3.11 # replace
@@ -51,5 +52,5 @@ source .venv/bin/activate
 uv pip install -U "jax[cuda12]"    
 ./.venv/bin/python -c "import jax; print(jax.default_backend())"
 uv pip install -e ".[all]"
-uv pip install tensorboad
+uv pip install tensorboard
 ./.venv/bin/python -c "import mujoco_playground"

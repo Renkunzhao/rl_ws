@@ -20,4 +20,4 @@ RUN apt update && \
 
 # make working directory as the Isaac Lab directory
 # this is the default directory when the container is run
-WORKDIR /workspace/${DOCKER_RL_WS_PATH}
+WORKDIR ${DOCKER_RL_WS_PATH}
