@@ -16,7 +16,10 @@ RUN apt update && \
     # Mujoco 
     apt install -y libglfw3-dev libxinerama-dev libxcursor-dev libxi-dev && \
     # Unitree Mujoco 
-    apt install -y joystick iproute2 ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-idl
+    apt install -y joystick iproute2 ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-idl && \
+    # Mujoco Playground
+    apt install -y ffmpeg
+    
 
 # make working directory as the Isaac Lab directory
 # this is the default directory when the container is run

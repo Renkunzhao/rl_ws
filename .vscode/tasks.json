@@ -44,9 +44,31 @@
             "problemMatcher": []
         },
         {
-            "label": "Train G1 mujoco_playground",
+            "label": "Train G1 mujoco_playground rsl_rl",
             "type": "shell",
-            "command": "../.venv/bin/python train_rsl_rl.py --env_name=G1JoystickRoughTerrain",
+            // "command": "source .venv/bin/activate; ../.venv/bin/python train_rsl_rl.py --env_name=G1JoystickRoughTerrain",
+            "command": "source ../.venv/bin/activate; ../.venv/bin/python train_rsl_rl.py --env_name=G1JoystickRoughTerrain --load_run_name G1JoystickRoughTerrain-20251003-192828 --checkpoint_num 650",
+            "options": {
+                "cwd": "${workspaceFolder}/src/mujoco_playground/learning/"
+            },
+            "group": "train",
+            "problemMatcher": []
+        },
+        {
+            "label": "Play G1 mujoco_playground",
+            "type": "shell",
+            // "command": "source .venv/bin/activate; ../.venv/bin/python train_rsl_rl.py --env_name=G1JoystickRoughTerrain",
+            "command": "source ../.venv/bin/activate; ../.venv/bin/python train_rsl_rl.py --env_name=G1JoystickRoughTerrain --play_only --load_run_name G1JoystickRoughTerrain-20251004-000055",
+            "options": {
+                "cwd": "${workspaceFolder}/src/mujoco_playground/learning/"
+            },
+            "group": "play",
+            "problemMatcher": []
+        },
+        {
+            "label": "Train G1 mujoco_playground jax_ppo",
+            "type": "shell",
+            "command": "source ../.venv/bin/activate; ../.venv/bin/python train_jax_ppo.py --env_name=G1JoystickRoughTerrain",
             "options": {
                 "cwd": "${workspaceFolder}/src/mujoco_playground/learning/"
             },
