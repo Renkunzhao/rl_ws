@@ -53,4 +53,6 @@ uv pip install -U "jax[cuda12]"
 ./.venv/bin/python -c "import jax; print(jax.default_backend())"
 uv pip install -e ".[all]"
 uv pip install tensorboard
+uv pip install onnxruntime hidapi
+uv pip install jupyter notebook
 ./.venv/bin/python -c "import mujoco_playground"
