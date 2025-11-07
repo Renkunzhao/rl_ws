@@ -26,7 +26,7 @@
         {
             "label": "Run G1 Simulation",
             "type": "shell",
-            "command": "./unitree_mujoco -i 0 -n lo -r g1 -s scene_29dof_terrain.xml",
+            "command": "./unitree_mujoco -i 1 -n lo -r g1 -s scene_29dof_terrain.xml",
             "options": {
                 "cwd": "${workspaceFolder}/src/unitree_mujoco/simulate/build"
             },
