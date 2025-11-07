@@ -10,7 +10,10 @@ ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 USER root
 
 RUN apt update && \
-    apt install -y jq gdb && \
+    apt install -y git-lfs && \
+    git lfs install
+
+RUN apt install -y jq gdb && \
     # Unitree SDK2
     apt install -y libyaml-cpp-dev libboost-all-dev libeigen3-dev libspdlog-dev libfmt-dev && \
     # Mujoco 
