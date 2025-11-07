@@ -1,9 +1,9 @@
 ```bash
 # In host machine 
-git clone https://github.com/isaac-sim/IsaacLab.git
-./src/IsaacLab/docker/container.py start ros2
+git clone https://github.com/Renkunzhao/IsaacLab.git
+./docker/container.py start ros2
 
-./src/IsaacLab/docker/container.py enter ros2
+./docker/container.py enter ros2
 # In container
 isaaclab -p scripts/reinforcement_learning/rsl_rl/play.py --task Isaac-Velocity-Rough-G1-v0 --use_pretrained_checkpoint
 
@@ -14,7 +14,7 @@ docker exec -it rl_ws bash
 
 # In container
 cd /workspace/rl_ws
-./scripts/config.sh
+./scripts/unitree-config.sh
 ```
 
 ```bash

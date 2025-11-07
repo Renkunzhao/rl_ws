@@ -21,7 +21,7 @@ RUN apt install -y jq gdb && \
     # Unitree Mujoco 
     apt install -y joystick iproute2 ros-humble-rmw-cyclonedds-cpp ros-humble-rosidl-generator-dds-idl && \
     # Mujoco Playground
-    apt install -y ffmpeg
+    apt install -y ffmpeg udev usbutils
     
 
 # make working directory as the Isaac Lab directory
