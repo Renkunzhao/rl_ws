@@ -12,8 +12,8 @@ cd mujoco
 mkdir build 
 cd build
 cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-make -j$(nproc)
-make install
+# make -j$(nproc)
+# make install
 
 # Unitree SDK2
 cd $PROJECT_DIR/lib
@@ -27,15 +27,24 @@ make -j$(nproc)
 make install
 
 # Unitree ROS2 & Unitree Sdk2 Bridge
-cd $PROJECT_DIR/lib
-git clone https://github.com/unitreerobotics/unitree_ros2 -b v0.3.0
-git clone https://github.com/Renkunzhao/unitree_sdk2_bridge.git
 cd $PROJECT_DIR
 ROS_DISTRO=humble
 ROS_SETUP="/opt/ros/$ROS_DISTRO/setup.bash"
 if [ -f "$ROS_SETUP" ]; then
     echo "ROS 2 ($ROS_DISTRO) installation found ✅"
-    # colcon build --packages-select unitree_sdk2 unitree_mujoco --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
+    cd $PROJECT_DIR/lib
+    git clone https://github.com/unitreerobotics/unitree_ros2 -b v0.3.0
+    git clone https://github.com/Renkunzhao/unitree_sdk2_bridge.git
+
+    cd $PROJECT_DIR/lib/unitree_ros2/cyclonedds_ws/src
+    git clone https://github.com/ros2/rmw_cyclonedds -b humble
+    git clone https://github.com/eclipse-cyclonedds/cyclonedds -b releases/0.10.x 
+
+    cd $PROJECT_DIR
+    # If build failed, try run: `export LD_LIBRARY_PATH=/opt/ros/humble/lib` first.
+    colcon build --packages-select cyclonedds # Compile cyclone-dds package
+
+    cd $PROJECT_DIR
     source "$ROS_SETUP"
     colcon build --packages-select unitree_api unitree_go unitree_hg --cmake-args -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
     source install/setup.bash
