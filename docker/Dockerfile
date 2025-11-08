@@ -3,8 +3,8 @@ ARG ISAACLAB_ROS2_IMAGE_ARG
 # we use the basic isaaclab image as the base
 FROM ${ISAACLAB_ROS2_IMAGE_ARG} AS base
 
-ARG DOCKER_RL_WS_PATH_ARG
-ENV DOCKER_RL_WS_PATH=${DOCKER_RL_WS_PATH_ARG}
+ARG WORKSPACE_ARG
+ENV WORKSPACE=${WORKSPACE_ARG}
 ENV LD_LIBRARY_PATH=/usr/local/lib:$LD_LIBRARY_PATH
 
 USER root
@@ -26,4 +26,4 @@ RUN apt install -y jq gdb && \
 
 # make working directory as the Isaac Lab directory
 # this is the default directory when the container is run
-WORKDIR ${DOCKER_RL_WS_PATH}
+WORKDIR ${WORKSPACE}

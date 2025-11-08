@@ -12,8 +12,8 @@ cd mujoco
 mkdir build 
 cd build
 cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
-# make -j$(nproc)
-# make install
+make -j$(nproc)
+make install
 
 # Unitree SDK2
 cd $PROJECT_DIR/lib

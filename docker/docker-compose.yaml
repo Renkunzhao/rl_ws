@@ -9,7 +9,7 @@ services:
       dockerfile: docker/Dockerfile
       args:
         - ISAACLAB_ROS2_IMAGE_ARG=${ISAACLAB_ROS2_IMAGE}
-        - DOCKER_RL_WS_PATH_ARG=${DOCKER_RL_WS_PATH}
+        - WORKSPACE_ARG=${WORKSPACE}
     image: rl_ws
     container_name: rl_ws
     volumes: 
@@ -18,7 +18,7 @@ services:
       - /dev/input:/dev/input
       - /dev/hidraw7:/dev/hidraw7
       - /run/udev:/run/udev
-      - ../:${DOCKER_RL_WS_PATH}
+      - ../:${WORKSPACE}
       - ../.cache/pip:/root/.cache/pip
       - ../.cache/uv:/root/.cache/uv
       - type: volume
