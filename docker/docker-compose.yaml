@@ -1,3 +1,4 @@
+name: rl_ws
 version: '3.9'
 
 services:
@@ -11,7 +12,7 @@ services:
         - DOCKER_RL_WS_PATH_ARG=${DOCKER_RL_WS_PATH}
     image: rl_ws
     container_name: rl_ws
-    volumes:
+    volumes: 
       - /tmp/.X11-unix:/tmp/.X11-unix
       - /etc/localtime:/etc/localtime
       - /dev/input:/dev/input
@@ -20,6 +21,45 @@ services:
       - ../:${DOCKER_RL_WS_PATH}
       - ../.cache/pip:/root/.cache/pip
       - ../.cache/uv:/root/.cache/uv
+      - type: volume
+        source: isaac-cache-kit
+        target: ${DOCKER_ISAACSIM_ROOT_PATH}/kit/cache
+      - type: volume
+        source: isaac-cache-ov
+        target: ${DOCKER_USER_HOME}/.cache/ov
+      - type: volume
+        source: isaac-cache-pip
+        target: ${DOCKER_USER_HOME}/.cache/pip
+      - type: volume
+        source: isaac-cache-gl
+        target: ${DOCKER_USER_HOME}/.cache/nvidia/GLCache
+      - type: volume
+        source: isaac-cache-compute
+        target: ${DOCKER_USER_HOME}/.nv/ComputeCache
+      - type: volume
+        source: isaac-logs
+        target: ${DOCKER_USER_HOME}/.nvidia-omniverse/logs
+      - type: volume
+        source: isaac-carb-logs
+        target: ${DOCKER_ISAACSIM_ROOT_PATH}/kit/logs/Kit/Isaac-Sim
+      - type: volume
+        source: isaac-data
+        target: ${DOCKER_USER_HOME}/.local/share/ov/data
+        # The effect of these volumes is twofold:
+        # 1. Prevent root-owned files from flooding the _build and logs dir
+        #    on the host machine
+        # 2. Preserve the artifacts in persistent volumes for later copying
+        #    to the host machine
+      - type: volume
+        source: isaac-lab-logs
+        target: ${DOCKER_ISAACLAB_PATH}/logs
+      - type: volume
+        source: isaac-lab-data
+        target: ${DOCKER_ISAACLAB_PATH}/data_storage
+        # This volume is used to store the history of the bash shell
+      - type: bind
+        source: .isaac-lab-docker-history
+        target: ${DOCKER_USER_HOME}/.bash_history
     network_mode: host
     environment:
       - OMNI_KIT_ALLOW_ROOT=1
@@ -39,3 +79,44 @@ services:
     privileged: true
     # security_opt:
     #   - seccomp=unconfined
+
+volumes:
+  isaac-cache-kit:
+    external: true
+    name: docker_isaac-cache-kit
+
+  isaac-cache-ov:
+    external: true
+    name: docker_isaac-cache-ov
+
+  isaac-cache-pip:
+    external: true
+    name: docker_isaac-cache-pip
+
+  isaac-cache-gl:
+    external: true
+    name: docker_isaac-cache-gl
+
+  isaac-cache-compute:
+    external: true
+    name: docker_isaac-cache-compute
+
+  isaac-logs:
+    external: true
+    name: docker_isaac-logs
+
+  isaac-carb-logs:
+    external: true
+    name: docker_isaac-carb-logs
+
+  isaac-data:
+    external: true
+    name: docker_isaac-data
+
+  isaac-lab-logs:
+    external: true
+    name: docker_isaac-lab-logs
+
+  isaac-lab-data:
+    external: true
+    name: docker_isaac-lab-data

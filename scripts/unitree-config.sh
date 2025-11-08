@@ -7,13 +7,13 @@ mkdir -p $PROJECT_DIR/src
 
 # Install Mujoco
 cd $PROJECT_DIR/lib
-git clone https://github.com/google-deepmind/mujoco.git -b 3.2.7
+git clone https://github.com/google-deepmind/mujoco.git
 cd mujoco
 mkdir build 
 cd build
 cmake .. -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
 make -j$(nproc)
-sudo make install
+make install
 
 # Unitree SDK2
 cd $PROJECT_DIR/lib
